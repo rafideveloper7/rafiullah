@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import About from '../components/sections/About'
 import Contact from '../components/sections/Contact'
 import Hero from '../components/sections/Hero'
@@ -17,7 +18,9 @@ export default async function Home() {
       <Services services={content.services} />
       <Projects projects={content.projects} />
       <Testimonials testimonials={content.testimonials} />
-      <Contact content={content} />
+      <Suspense fallback={<div className="px-4 py-20 text-center">Loading contact form...</div>}>
+        <Contact content={content} />
+      </Suspense>
       <FloatingWhatsApp phoneNumber={content.site.phone} />
     </main>
   )
